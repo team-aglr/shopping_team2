@@ -1,6 +1,8 @@
-import ProductListing from "./ProductListing";
 import { useState, useEffect } from "react";
 import data from "../mockData/data";
+
+import ProductListing from "./ProductListing";
+import AddProductForm from "./AddProductForm";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -13,7 +15,7 @@ const App = () => {
     <main>
       {/* Header */}
       <ProductListing products={products}/>
-      {/* add form */}
+      <AddProductForm />
     </main>
   )
 }
