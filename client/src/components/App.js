@@ -19,7 +19,7 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  const handleSubmit = async (newProduct, callback) => {
+  const handleSubmitAddProduct = async (newProduct, callback) => {
     try {
       const response = await axios.post('/api/products', newProduct);
       const data = response.data;
@@ -31,11 +31,22 @@ const App = () => {
     }
   }
   
+  const handleSubmitEditProduct = async (id, editedProduct, callback) => {
+    try {
+      const response = await axios.put(`/api/products/${id}`, editedProduct);
+      const data = response.data;
+      setProducts(products.map(product => product._id === id ? data : product));
+      if (callback) callback();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  
   return (
     <main>
       {/* Header */}
-      <ProductListing products={products} />
-      <AddProductForm onSubmit={handleSubmit} />
+      <ProductListing products={products} onSubmit={handleSubmitEditProduct} />
+      <AddProductForm onSubmit={handleSubmitAddProduct} />
     </main>
   )
 }

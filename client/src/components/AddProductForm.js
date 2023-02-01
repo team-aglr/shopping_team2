@@ -37,7 +37,7 @@ const AddProductForm = ({onSubmit}) => {
     <div className={`add-form ${showForm && "visible"}`}>
       <p><a className="button add-product-button" onClick={handleShowForm}>Add A Product</a></p>
       <h3>Add Product</h3>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="input-group">
           <label htmlFor="product-name">Product Name</label>
           <input 
