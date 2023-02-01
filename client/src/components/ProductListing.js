@@ -5,7 +5,7 @@ const ProductListing = ({products}) => {
     <div className="product-listing">
       <h2>Products</h2>
       {products.map(product => (
-        <Product {...product} key={product.id}/>
+        <Product {...product} key={product._id}/>
       ))}
     </div>
   )
