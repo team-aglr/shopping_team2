@@ -42,10 +42,24 @@ const App = () => {
     }
   }
   
+  const handleDeleteProduct = async (id, callback) => {
+    try {
+      await axios.delete(`/api/products/${id}`)
+      setProducts(products.filter(product => product._id !== id));
+      if (callback) callback();
+    } catch (err ) {
+      console.error(err);
+    }
+  }
+  
   return (
     <main>
       {/* Header */}
-      <ProductListing products={products} onSubmit={handleSubmitEditProduct} />
+      <ProductListing 
+        products={products} 
+        onSubmit={handleSubmitEditProduct} 
+        onDelete={handleDeleteProduct}
+      />
       <AddProductForm onSubmit={handleSubmitAddProduct} />
     </main>
   )

@@ -1,8 +1,13 @@
 import { useState } from "react";
 import EditProductForm from "./EditProductForm";
 
-const Product = ({product, onSubmit}) => {
+const Product = ({product, onSubmit, onDelete}) => {
   const [showEditForm, setShowEditForm] = useState(false);
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    onDelete(product._id);
+  }
   
   return (
     <div className="product">
@@ -14,7 +19,7 @@ const Product = ({product, onSubmit}) => {
           <a className={`button add-to-cart ${product.quantity === 0 && "disabled"}`}>Add to Cart</a>
           <a className="button edit" onClick={() => setShowEditForm(true)}>Edit</a>
         </div>
-        <a className="delete-button"><span>X</span></a>
+        <a className="delete-button" onClick={handleDelete}><span>X</span></a>
       </div>
       {showEditForm && <EditProductForm product={product} setShowEditForm={setShowEditForm} onSubmit={onSubmit} />}
     </div>
