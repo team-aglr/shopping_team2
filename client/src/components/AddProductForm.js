@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { validProduct } from "../services/products";
 
 const AddProductForm = ({ onSubmit }) => {
   const [showForm, setShowForm] = useState(false);
@@ -24,7 +25,11 @@ const AddProductForm = ({ onSubmit }) => {
       quantity
     };
 
-    onSubmit(newProduct, resetInputs);
+    if (validProduct(newProduct)) {
+      onSubmit(newProduct, resetInputs);
+    } else {
+      alert("Invalid inputs. Try again!")
+    }
   }
 
   const resetInputs = () => {

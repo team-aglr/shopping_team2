@@ -1,9 +1,10 @@
-import {useState} from "react";
+import { useState } from "react";
+import { validProduct } from "../services/products";
 
-const EditProductForm = ({onSubmit, product, setShowEditForm}) => {
+const EditProductForm = ({ onSubmit, product, setShowEditForm }) => {
   const [title, setTitle] = useState(product.title);
-  const [price, setPrice] = useState(product.price);
-  const [quantity, setQuantity] = useState(product.quantity);
+  const [price, setPrice] = useState(String(product.price));
+  const [quantity, setQuantity] = useState(String(product.quantity));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,9 +14,14 @@ const EditProductForm = ({onSubmit, product, setShowEditForm}) => {
       price,
       quantity,
     }
-    onSubmit(product._id, editedProduct, () => setShowEditForm(false));
+
+    if (validProduct(editedProduct)) {
+      onSubmit(product._id, editedProduct, () => setShowEditForm(false));
+    } else {
+      alert("Invalid inputs. Try again!");
+    }
   }
-  
+
   return (
     <div className="edit-form">
       <h3>Edit Product</h3>
@@ -26,7 +32,7 @@ const EditProductForm = ({onSubmit, product, setShowEditForm}) => {
             type="text"
             id="product-name"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}  
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 

@@ -38,6 +38,11 @@ const remove = async (id) => {
   }
 }
 
+export const validProduct = (product) => {
+  return product.price.match(/^\d+(\.\d{2})?$/) &&
+    product.quantity.match(/^\d+$/)
+}
+
 export default {
   getAll,
   add,
