@@ -116,6 +116,10 @@ h3 {
   margin-top: 20px;
 }
 
+.actions.hide {
+  display: none;
+}
+
 .product .delete-button {
   position: absolute;
   box-sizing: border-box;
