@@ -114,6 +114,8 @@ h3 {
 
 .actions {
   margin-top: 20px;
+  display: flex;
+  gap: 4px;
 }
 
 .actions.hide {
