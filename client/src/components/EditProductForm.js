@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { validProduct } from "../services/products";
 
-const EditProductForm = ({ onSubmit, product, setShowEditForm }) => {
+const EditProductForm = ({ onEditProduct, product, setShowEditForm }) => {
   const [title, setTitle] = useState(product.title);
   const [price, setPrice] = useState(String(product.price));
   const [quantity, setQuantity] = useState(String(product.quantity));
@@ -16,7 +16,7 @@ const EditProductForm = ({ onSubmit, product, setShowEditForm }) => {
     }
 
     if (validProduct(editedProduct)) {
-      onSubmit(product._id, editedProduct, () => setShowEditForm(false));
+      onEditProduct(product._id, editedProduct, () => setShowEditForm(false));
     } else {
       alert("Invalid inputs. Try again!");
     }

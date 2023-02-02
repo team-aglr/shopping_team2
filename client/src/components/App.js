@@ -25,14 +25,14 @@ const App = () => {
     fetchCartItems();
   }, []);
 
-  const handleSubmitAddProduct = async (newProduct, callback) => {
+  const handleAddProduct = async (newProduct, callback) => {
     const data = await productServices.add(newProduct);
     setProducts(products.concat(data));
 
     if (callback) callback();
   }
 
-  const handleSubmitEditProduct = async (id, editedProduct, callback) => {
+  const handleEditProduct = async (id, editedProduct, callback) => {
     const data = await productServices.edit(id, editedProduct);
     setProducts(products.map(product => product._id === id ? data : product));
     if (callback) callback();
@@ -44,6 +44,22 @@ const App = () => {
     if (callback) callback();
   }
 
+  const handleAddToCart = async (productId, callback) => {
+    const data = await cartServices.add(productId);
+    setProducts(products.map(product => {
+      return product._id === productId ? { ...product, quantity: product.quantity - 1 } : product;
+    }));
+
+    const itemExistsInCart = !!cartItems.find((item) => item.productId === productId);
+    if (itemExistsInCart) {
+      setCartItems(cartItems.map(item => {
+        return item.productId === productId ? { ...item, quantity: item.quantity + 1 } : item;
+      }));
+    } else {
+      setCartItems(cartItems.concat(data.item));
+    }
+  }
+
   return (
     <>
       <header>
@@ -53,10 +69,11 @@ const App = () => {
       <main>
         <ProductListing
           products={products}
-          onSubmit={handleSubmitEditProduct}
-          onDelete={handleDeleteProduct}
+          onEditProduct={handleEditProduct}
+          onDeleteProduct={handleDeleteProduct}
+          onAddToCart={handleAddToCart}
         />
-        <AddProductForm onSubmit={handleSubmitAddProduct} />
+        <AddProductForm onAddProduct={handleAddProduct} />
       </main>
     </>
   )

@@ -11,6 +11,16 @@ const getAll = async () => {
   }
 }
 
+const add = async (productId) => {
+  try {
+    const response = await axios.post(`${baseUrl}/add-to-cart`, { productId });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default {
   getAll,
+  add,
 }
