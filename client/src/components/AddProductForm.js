@@ -27,6 +27,7 @@ const AddProductForm = ({ onAddProduct }) => {
 
     if (validProduct(newProduct)) {
       onAddProduct(newProduct, resetInputs);
+      setShowForm(false);
     } else {
       alert("Invalid inputs. Try again!")
     }

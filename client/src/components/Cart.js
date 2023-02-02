@@ -21,7 +21,7 @@ const Cart = ({ cartItems, onCheckout }) => {
             <CartItem item={item} key={item._id} />
           ))}
           <tr>
-            <td colSpan="3" className="total">Total: ${total}</td>
+            <td colSpan="3" className="total">Total: ${total.toFixed(2)}</td>
           </tr>
         </tbody></table>
       <a className="button checkout" onClick={handleCheckout}>Checkout</a>

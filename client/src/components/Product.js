@@ -18,7 +18,7 @@ const Product = ({ product, onEditProduct, onDeleteProduct, onAddToCart }) => {
     <div className="product">
       <div className="product-details">
         <h3>{product.title}</h3>
-        <p className="price">${product.price}</p>
+        <p className="price">${product.price.toFixed(2)}</p>
         <p className={`quantity ${product.quantity === 0 ? "none-left" : ""}`}>{product.quantity} left in stock</p>
         <div className={`actions product-actions ${showEditForm ? "hide" : ""}`}>
           <a className={`button add-to-cart ${product.quantity === 0 ? "disabled" : ""}`} onClick={handleAddToCart}>Add to Cart</a>
