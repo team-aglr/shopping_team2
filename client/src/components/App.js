@@ -44,7 +44,7 @@ const App = () => {
     if (callback) callback();
   }
 
-  const handleAddToCart = async (productId, callback) => {
+  const handleAddToCart = async (productId) => {
     const data = await cartServices.add(productId);
     setProducts(products.map(product => {
       return product._id === productId ? { ...product, quantity: product.quantity - 1 } : product;
@@ -60,11 +60,16 @@ const App = () => {
     }
   }
 
+  const handleCheckout = async () => {
+    await cartServices.checkout();
+    setCartItems([]);
+  }
+
   return (
     <>
       <header>
         <h1>The Shop!</h1>
-        <Cart cartItems={cartItems} />
+        <Cart cartItems={cartItems} onCheckout={handleCheckout} />
       </header>
       <main>
         <ProductListing

@@ -20,7 +20,16 @@ const add = async (productId) => {
   }
 }
 
+const checkout = async () => {
+  try {
+    await axios.post(`${baseUrl}/checkout`);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default {
   getAll,
   add,
+  checkout
 }
