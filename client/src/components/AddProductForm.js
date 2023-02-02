@@ -1,11 +1,11 @@
-import {useState} from "react";
+import { useState } from "react";
 
-const AddProductForm = ({onSubmit}) => {
+const AddProductForm = ({ onSubmit }) => {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  
+
   const handleShowForm = (e) => {
     e.preventDefault();
     setShowForm(true);
@@ -19,11 +19,11 @@ const AddProductForm = ({onSubmit}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newProduct = {
-      title, 
-      price, 
+      title,
+      price,
       quantity
     };
-    
+
     onSubmit(newProduct, resetInputs);
   }
 
@@ -34,17 +34,17 @@ const AddProductForm = ({onSubmit}) => {
   }
 
   return (
-    <div className={`add-form ${showForm && "visible"}`}>
+    <div className={`add-form ${showForm ? "visible" : ""}`}>
       <p><a className="button add-product-button" onClick={handleShowForm}>Add A Product</a></p>
       <h3>Add Product</h3>
       <form>
         <div className="input-group">
           <label htmlFor="product-name">Product Name</label>
-          <input 
+          <input
             type="text"
             id="product-name"
             value={title}
-            onChange={(e) => { setTitle(e.target.value)}}
+            onChange={(e) => { setTitle(e.target.value) }}
           />
         </div>
 
@@ -54,7 +54,7 @@ const AddProductForm = ({onSubmit}) => {
             type="text"
             id="product-price"
             value={price}
-            onChange={(e) => { setPrice(e.target.value)}} />
+            onChange={(e) => { setPrice(e.target.value) }} />
         </div>
 
         <div className="input-group">
@@ -63,7 +63,7 @@ const AddProductForm = ({onSubmit}) => {
             type="text"
             id="product-quantity"
             value={quantity}
-            onChange={(e) => { setQuantity(e.target.value)}}
+            onChange={(e) => { setQuantity(e.target.value) }}
           />
         </div>
 

@@ -30,7 +30,7 @@ const App = () => {
       console.error(err);
     }
   }
-  
+
   const handleSubmitEditProduct = async (id, editedProduct, callback) => {
     try {
       const response = await axios.put(`/api/products/${id}`, editedProduct);
@@ -41,20 +41,20 @@ const App = () => {
       console.error(err);
     }
   }
-  
+
   const handleDeleteProduct = async (id, callback) => {
     try {
       await axios.delete(`/api/products/${id}`)
       setProducts(products.filter(product => product._id !== id));
       if (callback) callback();
-    } catch (err ) {
+    } catch (err) {
       console.error(err);
     }
   }
-  
+
   return (
     <main>
-      <header>
+      {/* <header>
         <h1>The Shop!</h1>
         <div className="cart">
           <h2>Your Cart</h2>
@@ -62,10 +62,10 @@ const App = () => {
           <p>Total: $0</p>
           <a className="button checkout disabled">Checkout</a>
         </div>
-      </header>
-      <ProductListing 
-        products={products} 
-        onSubmit={handleSubmitEditProduct} 
+      </header> */}
+      <ProductListing
+        products={products}
+        onSubmit={handleSubmitEditProduct}
         onDelete={handleDeleteProduct}
       />
       <AddProductForm onSubmit={handleSubmitAddProduct} />
