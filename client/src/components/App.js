@@ -6,22 +6,24 @@ import Cart from "./Cart";
 import ProductListing from "./ProductListing";
 import AddProductForm from "./AddProductForm";
 
+import useAsync from "../hooks/useAsync";
+
 const App = () => {
-  const [products, setProducts] = useState([]);
+  const {data: products, isLoading, isError} = useAsync("/api/products");
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const data = await productServices.getAll();
-      setProducts(data)
-    }
+    // const fetchProducts = async () => {
+    //   const data = await productServices.getAll();
+    //   setProducts(data)
+    // }
 
     const fetchCartItems = async () => {
       const data = await cartServices.getAll();
       setCartItems(data)
     }
 
-    fetchProducts();
+    // fetchProducts();
     fetchCartItems();
   }, []);
 
