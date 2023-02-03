@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import productServices from "../services/products";
 import cartServices from "../services/cart";
 
@@ -9,23 +8,8 @@ import AddProductForm from "./AddProductForm";
 import useAsync from "../hooks/useAsync";
 
 const App = () => {
-  const [{data: products, isLoading, isError}, setProducts] = useAsync("/api/products");
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    // const fetchProducts = async () => {
-    //   const data = await productServices.getAll();
-    //   setProducts(data)
-    // }
-
-    const fetchCartItems = async () => {
-      const data = await cartServices.getAll();
-      setCartItems(data)
-    }
-
-    // fetchProducts();
-    fetchCartItems();
-  }, []);
+  const [{data: products}, setProducts] = useAsync("/api/products");
+  const [{data: cartItems}, setCartItems] = useAsync("/api/cart");
 
   const handleAddProduct = async (newProduct, callback) => {
     const data = await productServices.add(newProduct);
