@@ -20,6 +20,8 @@ const dataFetchReducer = (state, action) => {
   }
 }
 
+
+// Goal: setProduct working
 const useAsync = (url) => {
   const [state, dispatch] = useReducer(dataFetchReducer, initialState);
 
@@ -34,11 +36,72 @@ const useAsync = (url) => {
         dispatch({type: 'ERROR'});
       }
     } 
+    
+    fetchData();
+  }, [url]);
+  
+  const setState = (data) => {
+    dispatch({type: 'SUCCESS', payload: data});
+  } 
+
+  return [state, setState];
+}
+
+export default useAsync;
+
+
+
+/*
+
+
+useEffect(() => {
+    const fetchData = async () => {
+      dispatch({type: 'LOADING'})
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+        dispatch({type: 'SUCCESS', payload: data});
+      } catch (err) {
+        dispatch({type: 'ERROR'});
+      }
+    } 
 
     fetchData();
   }, [url]);
 
-  return state;
+
+const useEntity = (url) => {
+  const [value, dispatch] = useReducer('')
+
+  const setValue = async (method, payload) => {
+    response = await axios.method(payload)
+    data = response.data
+    dispatch({type: SET_VALUE, data})
+  }
+
+  // do fetch
+  setValue(fetchedData)
+
+  return {
+    value,
+    setValue
+  }
 }
 
-export default useAsync;
+
+
+const useField = (type) => {
+  const [value, setValue] = useState('')
+
+  const onChange = (event) => {
+    setValue(event.target.value)
+  }
+
+  return {
+    type,
+    value,
+    onChange
+  }
+}
+
+*/

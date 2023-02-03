@@ -9,7 +9,7 @@ import AddProductForm from "./AddProductForm";
 import useAsync from "../hooks/useAsync";
 
 const App = () => {
-  const {data: products, isLoading, isError} = useAsync("/api/products");
+  const [{data: products, isLoading, isError}, setProducts] = useAsync("/api/products");
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
