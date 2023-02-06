@@ -23,7 +23,7 @@ const EditProductForm = ({ onEditProduct, product, setShowEditForm }) => {
   }
 
   return (
-    <div className="edit-form">
+    <div data-testid="edit-form" className="edit-form">
       <h3>Edit Product</h3>
       <form>
         <div className="input-group">
@@ -57,7 +57,7 @@ const EditProductForm = ({ onEditProduct, product, setShowEditForm }) => {
         </div>
 
         <div className="actions form-actions">
-          <a className="button" onClick={handleSubmit}>Update</a>
+          <a data-testid="submit" className="button" onClick={handleSubmit}>Update</a>
           <a className="button" onClick={() => setShowEditForm(false)}>Cancel</a>
         </div>
       </form>
